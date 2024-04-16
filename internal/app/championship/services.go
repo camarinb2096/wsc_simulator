@@ -4,7 +4,6 @@ import (
 	"camarinb2096/wsc_simulator/internal/app/matches"
 	"camarinb2096/wsc_simulator/internal/dtos"
 	logger "camarinb2096/wsc_simulator/pkg"
-	"fmt"
 	"math/rand"
 )
 
@@ -61,18 +60,12 @@ func PlayGroupPhase(groups dtos.Groups, s *service) dtos.Qualifieds {
 	qualifiedC, _ := s.repo.GetQualifiedTeamsByGroup(groups.GroupC)
 	qualifiedD, _ := s.repo.GetQualifiedTeamsByGroup(groups.GroupD)
 
-	fmt.Println(qualifiedA)
-	fmt.Println(qualifiedB)
-	fmt.Println(qualifiedC)
-	fmt.Println(qualifiedD)
-
 	return dtos.Qualifieds{
 		GroupA: qualifiedA,
 		GroupB: qualifiedB,
 		GroupC: qualifiedC,
 		GroupD: qualifiedD,
 	}
-
 }
 
 func playMatchesInGroup(group []int, s *service) {
