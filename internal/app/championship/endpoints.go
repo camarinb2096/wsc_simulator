@@ -5,7 +5,7 @@ import (
 )
 
 type (
-	Controller func(c *gin.Context)
+	Controller func(c *gin.Context, s Services)
 
 	Endpoints struct {
 		Start Controller
@@ -14,13 +14,17 @@ type (
 
 func NewEndpoints(s Services) *Endpoints {
 	return &Endpoints{
-		Start: StartChampionship,
+		Start: func(c *gin.Context, s Services) {
+			StartChampionship(c, s)
+		},
 	}
 }
 
-func StartChampionship(c *gin.Context) {
+func StartChampionship(c *gin.Context, s Services) {
+	teams := s.GroupDraw()
 	c.JSON(200, gin.H{
 		"message": "StartChampionship",
+		"teams":   teams,
 	})
 
 }

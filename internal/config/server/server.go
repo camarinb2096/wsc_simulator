@@ -41,7 +41,9 @@ func (s *Server) Routes(chmpSrv championship.Services, matchSrv matches.Services
 			playersEndpoints.Upload(c, plaSrv)
 		})
 
-		api.POST("/championship/start", gin.HandlerFunc(chmpEndpoints.Start))
+		api.POST("/championship/start", func(c *gin.Context) {
+			chmpEndpoints.Start(c, chmpSrv)
+		})
 	}
 
 }
