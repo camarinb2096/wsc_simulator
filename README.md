@@ -2,7 +2,7 @@
 
 # Descripción
 
-<p> De acuerdo al ejercicio propuesto, se define incialmente una arquitectura por capas con un enfoque DDD. En el que se le asigna un paquete completo a cada entidad que se vería involucrada en el simulador de torneo de futbol. Ofreciendo la portabilidad de cada entidad y una clara separación de responsabilidades. </p>
+<p> De acuerdo al ejercicio propuesto, se define la implementación de un API REST, utilizando una arquitectura por capas con un enfoque DDD. En el que se le asigna un paquete completo a cada entidad que se vería involucrada en el simulador de torneo de futbol. Ofreciendo la portabilidad de cada entidad y una clara separación de responsabilidades. </p>
 
 # Paquetes implementados
 
