@@ -1,4 +1,4 @@
-package posititons
+package positions
 
 import "gorm.io/gorm"
 

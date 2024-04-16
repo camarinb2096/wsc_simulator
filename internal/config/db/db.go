@@ -4,7 +4,7 @@ import (
 	"camarinb2096/wsc_simulator/internal/app/matches"
 	"camarinb2096/wsc_simulator/internal/app/phases"
 	"camarinb2096/wsc_simulator/internal/app/players"
-	"camarinb2096/wsc_simulator/internal/app/posititons"
+	positions "camarinb2096/wsc_simulator/internal/app/posititons"
 	"camarinb2096/wsc_simulator/internal/app/statistics"
 	"camarinb2096/wsc_simulator/internal/app/teams"
 	logger "camarinb2096/wsc_simulator/pkg"
@@ -59,7 +59,7 @@ func CloseDb(db *gorm.DB, logger *logger.Logger) {
 
 func Migration(db *gorm.DB, logger *logger.Logger) {
 	logger.Info("Running database migrations")
-	err := db.AutoMigrate(&teams.Team{}, &players.Player{}, &matches.Match{}, &phases.Phase{}, &posititons.Position{}, &statistics.Statistic{})
+	err := db.AutoMigrate(&teams.Team{}, &players.Player{}, &matches.Match{}, &phases.Phase{}, &positions.Position{}, &statistics.Statistic{})
 	if err != nil {
 		logger.Fatal("Error running database migrations: %v", err)
 	}

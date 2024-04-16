@@ -1,4 +1,4 @@
-package phases
+package championship
 
 import (
 	logger "camarinb2096/wsc_simulator/pkg"
@@ -6,14 +6,16 @@ import (
 	"gorm.io/gorm"
 )
 
-type Repository interface {
-	Create(interface{}) error
-}
+type (
+	Repository interface {
+		Create(interface{}) error
+	}
 
-type repo struct {
-	db     *gorm.DB
-	logger *logger.Logger
-}
+	repo struct {
+		db     *gorm.DB
+		logger *logger.Logger
+	}
+)
 
 func NewRepository(db *gorm.DB, logger *logger.Logger) Repository {
 	return &repo{
