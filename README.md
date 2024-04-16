@@ -10,5 +10,3 @@
 <li> WEB: GIN </li>
 
 <p> Se define la implementación del ORM para implementar practicas de code first, lo que facilita la manipulación, la integridad y la seguridad de los datos. Adicional de la eficiencia al modelar la base de datos desde el código. GIN como web framework para agilidad en la configuración de rutas HTTP y en el desarrollo. </p>
-
-
