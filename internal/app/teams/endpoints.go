@@ -7,7 +7,7 @@ import (
 )
 
 type (
-	Controller func(c *gin.Context)
+	Controller func(c *gin.Context, s Services)
 
 	Endpoints struct {
 		Upload Controller
@@ -16,30 +16,34 @@ type (
 
 func NewEndpoints(s Services) *Endpoints {
 	return &Endpoints{
-		Upload: UploadData,
+		Upload: func(c *gin.Context, s Services) {
+			UploadData(c, s)
+		},
 	}
 }
 
-func UploadData(c *gin.Context) {
+func UploadData(c *gin.Context, s Services) {
 
-	file, err := c.FormFile("file")
+	fileHeader, err := c.FormFile("file")
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	filePath := "internal/app/data/" + file.Filename
-	if err := c.SaveUploadedFile(file, filePath); err != nil {
+	file, err := fileHeader.Open()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	defer file.Close()
+
+	teams, err := s.Create(file)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	c.JSON(200, gin.H{
-		"message": "GetChampionship",
-	})
-}
-
-func CreateChampionship(c *gin.Context) {
-	c.JSON(200, gin.H{
-		"message": "CreateChampionship",
+		"message": "teams created successfully",
+		"teams":   teams,
 	})
 }

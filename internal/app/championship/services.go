@@ -5,7 +5,7 @@ import (
 )
 
 type Services interface {
-	CreateChampionship() error
+	GroupDraw() error
 }
 
 type service struct {
@@ -20,6 +20,6 @@ func NewService(repo Repository, logger *logger.Logger) Services {
 	}
 }
 
-func (s *service) CreateChampionship() error {
+func (s *service) GroupDraw() error {
 	return nil
 }

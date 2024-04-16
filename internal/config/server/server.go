@@ -24,7 +24,7 @@ func NewServer() *Server {
 }
 
 func (s *Server) Routes(chmpSrv championship.Services, matchSrv matches.Services, phaseSrv phases.Services, posSrv positions.Services, stcSrv statistics.Services, plaSrv players.Services, teamSrv teams.Services) {
-	// chmpEndpoints := championship.NewEndpoints(chmpSrv)
+	chmpEndpoints := championship.NewEndpoints(chmpSrv)
 	teamsEndpoints := teams.NewEndpoints(teamSrv)
 	playersEndpoints := players.NewEndpoints(plaSrv)
 	// matchEndpoints := matches.NewEndpoints(matchSrv)
@@ -34,8 +34,14 @@ func (s *Server) Routes(chmpSrv championship.Services, matchSrv matches.Services
 
 	api := s.router.Group("/api/v1")
 	{
-		api.POST("/teams/upload", gin.HandlerFunc(teamsEndpoints.Upload))
-		api.POST("/players/upload", gin.HandlerFunc(playersEndpoints.Upload))
+		api.POST("/teams/upload", func(c *gin.Context) {
+			teamsEndpoints.Upload(c, teamSrv)
+		})
+		api.POST("/players/upload", func(c *gin.Context) {
+			playersEndpoints.Upload(c, plaSrv)
+		})
+
+		api.POST("/championship/start", gin.HandlerFunc(chmpEndpoints.Start))
 	}
 
 }

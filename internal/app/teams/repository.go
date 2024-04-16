@@ -7,7 +7,7 @@ import (
 )
 
 type Repository interface {
-	Create(interface{}) error
+	Create(team []Team) error
 }
 
 type repo struct {
@@ -22,6 +22,11 @@ func NewRepository(db *gorm.DB, logger *logger.Logger) Repository {
 	}
 }
 
-func (r *repo) Create(interface{}) error {
+func (r *repo) Create(team []Team) error {
+	err := r.db.Create(&team)
+	if err.Error != nil {
+		r.logger.Error(err.Error.Error())
+		return err.Error
+	}
 	return nil
 }
