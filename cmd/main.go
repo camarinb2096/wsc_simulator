@@ -5,7 +5,6 @@ import (
 	"camarinb2096/wsc_simulator/internal/app/matches"
 	"camarinb2096/wsc_simulator/internal/app/phases"
 	"camarinb2096/wsc_simulator/internal/app/players"
-	positions "camarinb2096/wsc_simulator/internal/app/posititons"
 	"camarinb2096/wsc_simulator/internal/app/statistics"
 	"camarinb2096/wsc_simulator/internal/app/teams"
 	"camarinb2096/wsc_simulator/internal/config/db"
@@ -42,9 +41,6 @@ func main() {
 	playersRepo := players.NewRepository(mySqlDbConn, logger)
 	playersSrv := players.NewService(playersRepo, logger)
 
-	positionsRepo := positions.NewRepository(mySqlDbConn, logger)
-	positionsSrv := positions.NewService(positionsRepo, logger)
-
 	statisticsRepo := statistics.NewRepository(mySqlDbConn, logger)
 	statisticsSrv := statistics.NewService(statisticsRepo, logger)
 
@@ -52,6 +48,6 @@ func main() {
 	teamsSrv := teams.NewService(teamsRepo, logger)
 
 	server := server.NewServer()
-	server.Routes(championshipSrv, matchesSrv, phasesSrv, positionsSrv, statisticsSrv, playersSrv, teamsSrv)
+	server.Routes(championshipSrv, matchesSrv, phasesSrv, statisticsSrv, playersSrv, teamsSrv)
 	server.Run(logger)
 }

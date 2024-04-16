@@ -5,7 +5,6 @@ import (
 	"camarinb2096/wsc_simulator/internal/app/matches"
 	"camarinb2096/wsc_simulator/internal/app/phases"
 	"camarinb2096/wsc_simulator/internal/app/players"
-	positions "camarinb2096/wsc_simulator/internal/app/posititons"
 	"camarinb2096/wsc_simulator/internal/app/statistics"
 	"camarinb2096/wsc_simulator/internal/app/teams"
 	logger "camarinb2096/wsc_simulator/pkg"
@@ -23,7 +22,7 @@ func NewServer() *Server {
 	}
 }
 
-func (s *Server) Routes(chmpSrv championship.Services, matchSrv matches.Services, phaseSrv phases.Services, posSrv positions.Services, stcSrv statistics.Services, plaSrv players.Services, teamSrv teams.Services) {
+func (s *Server) Routes(chmpSrv championship.Services, matchSrv matches.Services, phaseSrv phases.Services, stcSrv statistics.Services, plaSrv players.Services, teamSrv teams.Services) {
 	chmpEndpoints := championship.NewEndpoints(chmpSrv)
 	teamsEndpoints := teams.NewEndpoints(teamSrv)
 	playersEndpoints := players.NewEndpoints(plaSrv)
