@@ -21,10 +21,10 @@ func NewEndpoints(s Services) *Endpoints {
 }
 
 func StartChampionship(c *gin.Context, s Services) {
-	teams := s.GroupDraw()
+	s.PlayChampionship()
+
 	c.JSON(200, gin.H{
-		"message": "StartChampionship",
-		"teams":   teams,
+		"message": "Playing Championship",
 	})
 
 }

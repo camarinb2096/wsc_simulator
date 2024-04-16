@@ -6,4 +6,5 @@ type Team struct {
 	gorm.Model
 	Name      string
 	FlagPhoto string
+	Points    int
 }

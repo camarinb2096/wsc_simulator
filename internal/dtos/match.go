@@ -1,6 +1,6 @@
 package dtos
 
-type MatchPlayed struct {
+type Matches struct {
 	FkPhase            int `json:"fkPhase"`
 	FkLocalTeam        int `json:"fkLocalTeam"`
 	FkVisitorTeam      int `json:"fkVisitorTeam"`
@@ -10,4 +10,5 @@ type MatchPlayed struct {
 	YellowCardsVisitor int `json:"yellowCardsVisitor"`
 	RedCardsLocal      int `json:"redCardsLocal"`
 	RedCardsVisitor    int `json:"redCardsVisitor"`
+	Winner             int `json:"winner"`
 }

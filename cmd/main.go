@@ -28,12 +28,11 @@ func main() {
 	defer db.CloseDb(mySqlDbConn, logger)
 
 	db.Migration(mySqlDbConn, logger)
-
-	championshipRepo := championship.NewRepository(mySqlDbConn, logger)
-	championshipSrv := championship.NewService(championshipRepo, logger)
-
 	matchesRepo := matches.NewRepository(mySqlDbConn, logger)
 	matchesSrv := matches.NewService(matchesRepo, logger)
+
+	championshipRepo := championship.NewRepository(mySqlDbConn, logger)
+	championshipSrv := championship.NewService(championshipRepo, logger, matchesSrv)
 
 	phasesRepo := phases.NewRepository(mySqlDbConn, logger)
 	phasesSrv := phases.NewService(phasesRepo, logger)
