@@ -1,5 +1,6 @@
 <h1>WorldSoccerChampionship Simulator</h1>
 
-# wsc_simulator
+# Description
 
-This is a repo for a World Soccer Championship Simulator.
+<p> This is a repo for a World Soccer Championship Simulator. </p>
+
