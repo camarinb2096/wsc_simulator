@@ -68,7 +68,6 @@ func (s *service) Create(file io.Reader) error {
 		})
 		count++
 	}
-
 	err := s.repo.Create(players)
 	if err != nil {
 		s.logger.Error("Error creating team")

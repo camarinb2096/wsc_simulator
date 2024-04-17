@@ -28,7 +28,6 @@ func NewEndpoints(s Services) *Endpoints {
 func StartChampionship(c *gin.Context, s Services) {
 	//TODO: Return error if teams are not uploaded
 	s.PlayChampionship()
-
 	c.JSON(200, gin.H{
 		"message": "Playing Championship",
 	})
@@ -37,14 +36,12 @@ func StartChampionship(c *gin.Context, s Services) {
 
 func RestartChampionship(c *gin.Context, s Services) {
 	err := s.RestartChampionship()
-
 	if err != nil {
 		c.JSON(500, gin.H{
 			"message": "Error Restarting Championship",
 		})
 		return
 	}
-
 	c.JSON(200, gin.H{
 		"message": "Championship Restarted",
 	})
