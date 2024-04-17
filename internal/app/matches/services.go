@@ -8,6 +8,8 @@ import (
 
 type Services interface {
 	PlayMatch(fkLocalTeam int, fkVisitorTeam int, fkPhase int) dtos.Matches
+	GetMatches() (dtos.MatchResponse, error)
+	GetStatistics() (interface{}, error)
 }
 
 type service struct {
@@ -21,6 +23,23 @@ func NewService(repo Repository, logger *logger.Logger) Services {
 		logger: logger,
 	}
 }
+
+func (s *service) GetMatches() (dtos.MatchResponse, error) {
+	var response dtos.MatchResponse
+	totalMatches := s.repo.CountMatches()
+	matches, err := s.repo.GetMatches()
+	if err != nil {
+		s.logger.Error(err.Error())
+		return response, err
+	}
+
+	response.Total = totalMatches
+	response.Message = "Matches retrieved successfully"
+	response.Data = matches
+
+	return response, nil
+}
+
 func (s *service) PlayMatch(fkLocalTeam int, fkVisitorTeam int, fkPhase int) dtos.Matches {
 	var matchPlayed dtos.Matches
 
@@ -74,4 +93,9 @@ func (s *service) SavePlayedMatch(matchPlayed dtos.Matches) {
 	if err != nil {
 		s.logger.Error(err.Error())
 	}
+}
+
+func (s *service) GetStatistics() (interface{}, error) {
+	statistic := s.repo.GetMatchStatistics()
+	return statistic, nil
 }

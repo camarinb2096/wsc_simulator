@@ -1,6 +1,7 @@
 package teams
 
 import (
+	"camarinb2096/wsc_simulator/internal/dtos"
 	logger "camarinb2096/wsc_simulator/pkg"
 	"encoding/csv"
 	"errors"
@@ -9,6 +10,8 @@ import (
 
 type Services interface {
 	Create(file io.Reader) ([]Team, error)
+	Get() ([]dtos.TeamsOrdered, error)
+	GetChampionTeam() (Team, error)
 }
 
 type service struct {
@@ -66,4 +69,28 @@ func (s *service) Create(file io.Reader) ([]Team, error) {
 		return nil, errors.New("error creating team")
 	}
 	return teams, nil
+}
+
+func (s *service) Get() ([]dtos.TeamsOrdered, error) {
+	var teams []dtos.TeamsOrdered
+	teams, err := s.repo.GetTeamsOrdered()
+	if err != nil {
+		s.logger.Error("Error getting teams")
+		return nil, errors.New("error getting teams")
+	}
+
+	for i := range teams {
+		teams[i].Position = i + 1
+	}
+
+	return teams, nil
+}
+
+func (s *service) GetChampionTeam() (Team, error) {
+	team, err := s.repo.GetChampionTeam()
+	if err != nil {
+		s.logger.Error("Error getting champion team")
+		return Team{}, errors.New("error getting champion team")
+	}
+	return team, nil
 }

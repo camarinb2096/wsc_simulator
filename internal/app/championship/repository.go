@@ -10,6 +10,8 @@ type (
 	Repository interface {
 		GetTeamsId() ([]int, error)
 		GetQualifiedTeamsByGroup(group []int) ([]int, error)
+		RestartPoints() error
+		DeleteMatches() error
 	}
 
 	repo struct {
@@ -43,4 +45,22 @@ func (r *repo) GetQualifiedTeamsByGroup(group []int) ([]int, error) {
 		return nil, result.Error
 	}
 	return teamsId, nil
+}
+
+func (r *repo) RestartPoints() error {
+	result := r.db.Exec("UPDATE teams SET points = 0")
+	if result.Error != nil {
+		r.logger.Error(result.Error.Error())
+		return result.Error
+	}
+	return nil
+}
+
+func (r *repo) DeleteMatches() error {
+	result := r.db.Exec("DELETE FROM matches")
+	if result.Error != nil {
+		r.logger.Error(result.Error.Error())
+		return result.Error
+	}
+	return nil
 }
