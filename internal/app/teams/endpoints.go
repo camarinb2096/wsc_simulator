@@ -64,7 +64,7 @@ func GetTeams(c *gin.Context, s Services) {
 		})
 		return
 	}
-	if len(teams) == 0 {
+	if teams == nil {
 		c.JSON(404, gin.H{
 			"message": "No teams found",
 		})

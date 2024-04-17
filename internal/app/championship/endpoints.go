@@ -26,6 +26,7 @@ func NewEndpoints(s Services) *Endpoints {
 }
 
 func StartChampionship(c *gin.Context, s Services) {
+	//TODO: Return error if teams are not uploaded
 	s.PlayChampionship()
 
 	c.JSON(200, gin.H{

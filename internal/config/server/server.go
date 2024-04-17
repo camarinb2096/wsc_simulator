@@ -6,6 +6,7 @@ import (
 	"camarinb2096/wsc_simulator/internal/app/players"
 	"camarinb2096/wsc_simulator/internal/app/teams"
 	logger "camarinb2096/wsc_simulator/pkg"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -25,9 +26,6 @@ func (s *Server) Routes(chmpSrv championship.Services, matchSrv matches.Services
 	teamsEndpoints := teams.NewEndpoints(teamSrv)
 	playersEndpoints := players.NewEndpoints(plaSrv)
 	matchEndpoints := matches.NewEndpoints(matchSrv)
-	// phaseEndpoints := phases.NewEndpoints(phaseSrv)
-	// posEndpoints := positions.NewEndpoints(posSrv)
-	// stcEndpoints := statistics.NewEndpoints(stcSrv)
 
 	api := s.router.Group("/api/v1")
 	{
@@ -65,5 +63,5 @@ func (s *Server) Routes(chmpSrv championship.Services, matchSrv matches.Services
 
 func (s *Server) Run(logger *logger.Logger) {
 	logger.Info("Starting WSC-Simulator Server")
-	s.router.Run()
+	s.router.Run(":" + os.Getenv("SERVICE_PORT"))
 }

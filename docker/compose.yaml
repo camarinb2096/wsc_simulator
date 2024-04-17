@@ -1,23 +1,34 @@
+version: '3'
+
 services: 
-  db:
-    image: mysql
-    container_name: db
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - "3307:3306"
-    volumes:
-      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
   app:
     build: ../
     ports: 
       - "8080:8080"
-    depends_on:
-      - db
     environment:
-      MYSQL_DATABASE: wsc_simulator
-      MYSQL_USER: test
-      MYSQL_PASSWORD: test
       MYSQL_HOST: db
+      MYSQL_DATABASE: wsc_simulator
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    depends_on:
+       db:
+          condition: service_healthy
+    restart: on-failure
+  db:
+    image: mysql
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ../docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 1s
+      timeout: 1s
+      retries: 5
+
+
+  
