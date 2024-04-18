@@ -43,6 +43,9 @@ func (s *Server) Routes(chmpSrv championship.Services, matchSrv matches.Services
 		api.POST("/players/upload", func(c *gin.Context) {
 			playersEndpoints.Upload(c, plaSrv)
 		})
+		api.GET("/players", func(c *gin.Context) {
+			playersEndpoints.Get(c, plaSrv)
+		})
 		api.POST("/championship/start", func(c *gin.Context) {
 			chmpEndpoints.Start(c, chmpSrv)
 		})
@@ -52,13 +55,10 @@ func (s *Server) Routes(chmpSrv championship.Services, matchSrv matches.Services
 		api.GET("/matches", func(c *gin.Context) {
 			matchEndpoints.Get(c, matchSrv)
 		})
-
 		api.GET("/statistics", func(c *gin.Context) {
 			matchEndpoints.GetStatistics(c, matchSrv)
 		})
-
 	}
-
 }
 
 func (s *Server) Run(logger *logger.Logger) {

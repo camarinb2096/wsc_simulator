@@ -18,6 +18,6 @@ func NewEndpoints(s Services) *Endpoints {
 
 func GetStatistics(c *gin.Context) {
 	c.JSON(200, gin.H{
-		"message": "GetStatistics",
+		"message": "statistics retrieved successfully",
 	})
 }

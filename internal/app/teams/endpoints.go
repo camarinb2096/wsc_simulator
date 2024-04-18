@@ -60,13 +60,13 @@ func GetTeams(c *gin.Context, s Services) {
 	teams, err := s.Get()
 	if err != nil {
 		c.JSON(500, gin.H{
-			"message": "Error getting teams",
+			"message": "error getting teams",
 		})
 		return
 	}
 	if teams == nil {
 		c.JSON(404, gin.H{
-			"message": "No teams found",
+			"message": "no teams found",
 		})
 		return
 	}
@@ -77,7 +77,7 @@ func GetChampionTeam(c *gin.Context, s Services) Team {
 	team, err := s.GetChampionTeam()
 	if err != nil {
 		c.JSON(500, gin.H{
-			"message": "Error getting champion team",
+			"message": "error getting champion team",
 		})
 		return Team{}
 	}

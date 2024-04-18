@@ -8,6 +8,8 @@ import (
 
 type Repository interface {
 	Create(players []Player) error
+	Get() ([]Player, error)
+	GetByTeam(fkTeam int) ([]Player, error)
 }
 
 type repo struct {
@@ -30,4 +32,26 @@ func (r *repo) Create(player []Player) error {
 	}
 
 	return nil
+}
+
+func (r *repo) Get() ([]Player, error) {
+	var players []Player
+	err := r.db.Find(&players)
+	if err.Error != nil {
+		r.logger.Error(err.Error.Error())
+		return nil, err.Error
+	}
+
+	return players, nil
+}
+
+func (r *repo) GetByTeam(fkTeam int) ([]Player, error) {
+	var players []Player
+	err := r.db.Where("fk_team = ?", fkTeam).Find(&players)
+	if err.Error != nil {
+		r.logger.Error(err.Error.Error())
+		return nil, err.Error
+	}
+
+	return players, nil
 }

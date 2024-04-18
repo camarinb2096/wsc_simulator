@@ -1,0 +1,11 @@
+name;nacionality;birthdate;position;number;photo;fkteam
+John Doe;USA;1990-01-01;Goalkeeper;1;http://example.com/photo1.jpg;1
+Alex Smith;Canada;1992-02-02;Defender;2;http://example.com/photo2.jpg;1
+Marco Rossi;Italy;1993-03-03;Defender;3;http://example.com/photo3.jpg;1
+Chris Johnson;England;1988-04-04;Midfielder;4;http://example.com/photo4.jpg;1
+Peter Brown;Scotland;1995-05-05;Midfielder;5;http://example.com/photo5.jpg;1
+Lucas Martin;France;1996-06-06;Midfielder;6;http://example.com/photo6.jpg;1
+Sergio Ramos;Spain;1989-07-07;Defender;7;http://example.com/photo7.jpg;1
+David Lee;Germany;1991-08-08;Forward;8;http://example.com/photo8.jpg;1
+Hugo Boss;Netherlands;1994-09-09;Forward;9;http://example.com/photo9.jpg;1
+Ian Wright;Ireland;1987-10-10;Forward;10;http://example.com/photo10.jpg;1

@@ -28,13 +28,13 @@ func GetMatches(c *gin.Context, s Services) {
 	response, err := s.GetMatches()
 	if err != nil {
 		c.JSON(500, gin.H{
-			"message": "Error getting matches",
+			"message": "error getting matches",
 		})
 		return
 	}
 	if response.Total == 0 {
 		c.JSON(404, gin.H{
-			"message": "No matches found",
+			"message": "no matches found",
 		})
 		return
 	}
@@ -46,7 +46,7 @@ func GetStatistics(c *gin.Context, s Services) {
 
 	if err != nil {
 		c.JSON(500, gin.H{
-			"message": "Error getting statistics",
+			"message": "error getting statistics",
 		})
 		return
 	}

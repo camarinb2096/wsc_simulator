@@ -4,12 +4,14 @@ import (
 	logger "camarinb2096/wsc_simulator/pkg"
 	"encoding/csv"
 	"errors"
+	"fmt"
 	"io"
 	"strconv"
 )
 
 type Services interface {
 	Create(file io.Reader) error
+	Get(fkTeam int) ([]Player, error)
 }
 
 type service struct {
@@ -39,8 +41,8 @@ func (s *service) Create(file io.Reader) error {
 		if err == io.EOF {
 			break
 		}
-		if len(players) != 2 {
-			s.logger.Error("Error reading teams file")
+		if len(player) != 7 {
+			fmt.Println("Error reading teams file here!", len(player))
 			return errors.New("error reading teams file")
 		}
 		if err != nil {
@@ -75,4 +77,20 @@ func (s *service) Create(file io.Reader) error {
 	}
 
 	return nil
+}
+
+func (s *service) Get(fkTeam int) ([]Player, error) {
+	var players []Player
+	var err error
+
+	if fkTeam == 0 {
+		players, err = s.repo.Get()
+	} else {
+		players, err = s.repo.GetByTeam(fkTeam)
+	}
+	if err != nil {
+		s.logger.Error("Error getting players")
+		return nil, errors.New("error getting players")
+	}
+	return players, nil
 }
