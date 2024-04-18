@@ -25,7 +25,9 @@
 <li> 6. Si los servicios se están ejecutando satisfactoriamente puede probar las funcionalidades con la colección de postman adjunta</li>
 
 <p>El servicio de la aplicación puede tardar unos segundos en iniciarse mientras encuentra disponible el servicio de base de datos</p>
+
 <p>Tenga en cuenta que al no haber instalado la imagen de mysql en la primera ejecución puede tardar la descarga de dicho contenedor</p>
+
 # Funcionalidad
 
 <li>El programa tiene la funcionalidad de cargar equipos y jugadores a través de un CSV mediante un endpoint.</li>
