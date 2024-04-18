@@ -17,8 +17,18 @@
 
 # Instalación y puesta en marcha
 
-<li> Abra una terminal en la raiz del directorio del repositorio </li>
-<li> Navege hasta la carpeta docker </li>
-<li> Ejecute el comando "sudo docker compose up", esto levantara los servicios incluido la base de datos </li>
-<li> Verifique con el comando "sudo docker ps -a" que los servivios hayan sido levantados con exito </li>
-<li> Si los servicios se están ejecutando satisfactoriamente puede probar las funcionalidades con la colección de postman adjunta</li>
+<li> 1. Clone el repositorio </li>
+<li> 2. Abra una terminal en la raiz del directorio del repositorio </li>
+<li> 3. Navege hasta la carpeta docker </li>
+<li> 4. Ejecute el comando "sudo docker compose up", esto levantara los servicios incluido la base de datos </li>
+<li> 5. Verifique con el comando "sudo docker ps -a" que los servivios hayan sido levantados con exito </li>
+<li> 6. Si los servicios se están ejecutando satisfactoriamente puede probar las funcionalidades con la colección de postman adjunta</li>
+
+<p>El servicio de la aplicación puede tardar unos segundos en iniciarse mientras encuentra disponible el servicio de base de datos</p>
+<p>Tenga en cuenta que al no haber instalado la imagen de mysql en la primera ejecución puede tardar la descarga de dicho contenedor</p>
+# Funcionalidad
+
+<li>El programa tiene la funcionalidad de cargar equipos y jugadores a través de un CSV mediante un endpoint.</li>
+<li>Para interactuar con el servicio se adjunta una colección de POSTMAN</li>
+
+[Colección](https://documenter.getpostman.com/view/25279603/2sA3Bn5XQT)
